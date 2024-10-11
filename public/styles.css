@@ -1,0 +1,24 @@
+@import "./bootstrap.css";
+
+:root {
+  --custbg-light: hsl(136, 54%, 83%);
+}
+
+.navbar-img {
+  margin-right: 1rem;
+}
+
+.bg-custom {
+  background-color: var(--custbg-light);
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: var(--custbg-light);
+}
+
+.main-content {
+  padding-top: 2rem;
+}
