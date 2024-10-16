@@ -13,12 +13,227 @@
 }
 
 .footer {
-  position: absolute;
-  bottom: 0;
+  position: sticky;
+  top: 100vh;
   width: 100%;
   background-color: var(--custbg-light);
 }
 
 .main-content {
+  display: flex;
+  flex-direction: column;
   padding-top: 2rem;
+  min-height: calc(100vh - 126px);
+}
+
+.sidebar-products {
+  flex: 1;
+  margin: 2rem 0;
+  display: grid;
+  grid-template-columns: 15vw 1fr;
+  gap: 1rem;
+  border-radius: 1rem;
+  height: 100%;
+
+  border: 1px solid rgba(0, 0, 0, 0.144);
+}
+
+.sidebar {
+  background-color: #c9e6c42d;
+  padding: 1rem;
+  border-right: 1px solid rgba(0, 0, 0, 0.144);
+  border-radius: 1rem 0 0 0;
+}
+
+.products-container {
+  padding: 2rem 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 190px));
+  grid-template-rows: 215px;
+  align-items: start;
+  gap: 1rem;
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 3px;
+  background-color: hsla(120, 100%, 95%, 0.148);
+  justify-content: center;
+  align-items: center;
+  border-radius: 1rem;
+  gap: 1rem;
+  transition: all 200ms ease;
+}
+
+.product-card:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+.product-img {
+  padding: 1rem 0 0 0;
+}
+
+.card-info {
+  width: 100%;
+}
+
+.name-price {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  font-weight: 600;
+  padding: 0rem 1rem;
+}
+
+.card-brand {
+  font-size: 0.75rem;
+  padding: 0rem 1rem;
+  line-height: 0.1rem;
+}
+
+.badge {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 2px;
+  width: 100%;
+  border-radius: 0 0 1rem 1rem !important;
+  border-top: 1px solid rgba(0, 0, 0, 0.078);
+}
+
+.text-bg-Meat {
+  color: hsl(0, 100%, 98%);
+  background-color: hsl(0, 100%, 43%);
+}
+
+.text-bg-Dairy {
+  color: hsl(57, 100%, 16%);
+  background-color: hsl(57, 100%, 96%);
+}
+
+.text-bg-Vegetable {
+  color: hsl(113, 80%, 95%);
+  background-color: hsl(113, 80%, 35%);
+}
+
+.text-bg-Fruit {
+  color: hsl(337, 100%, 98%);
+  background-color: hsl(337, 100%, 50%);
+}
+
+.text-bg-Seafood {
+  color: hsl(227, 100%, 98%);
+  background-color: hsl(227, 100%, 50%);
+}
+
+.text-bg-Bakery {
+  color: hsl(35, 100%, 21%);
+  background-color: rgb(255, 194, 108);
+}
+
+.text-bg-Grains {
+  color: hsl(35, 100%, 27%);
+  background-color: rgb(255, 227, 188);
+}
+
+.text-bg-Nuts {
+  color: hsl(35, 38%, 25%);
+  background-color: hsl(35, 38%, 65%);
+}
+
+.text-bg-Beverages {
+  color: hsl(0, 21%, 92%);
+  background-color: hsl(0, 21%, 32%);
+}
+
+.text-bg-Snacks {
+  color: hsl(277, 72%, 99%);
+  background-color: hsl(277, 72%, 29%);
+}
+
+.text-bg-Frozen {
+  color: hsl(190, 64%, 21%);
+  background-color: hsl(190, 64%, 81%);
+}
+
+.text-bg-Condiments {
+  color: hsl(0, 88%, 27%);
+  background-color: hsl(58, 100%, 66%);
+}
+
+.text-bg-Pantry {
+  color: hsl(161, 88%, 97%);
+  background-color: hsl(161, 82%, 37%);
+}
+
+.category-label {
+  padding: 0rem 0.5rem;
+  margin: 0.25rem;
+  border-radius: 2rem;
+}
+
+form:hover {
+  cursor: pointer;
+}
+
+.sidebar > *:not(:first-child) .form-title {
+  margin-top: 1.5rem;
+}
+
+.form-title {
+  font-weight: 600;
+}
+
+.text-bg-Blue {
+  color: hsl(240, 100%, 90%);
+  background-color: hsl(240, 100%, 50%);
+}
+
+.text-bg-Brown {
+  color: hsl(35, 46%, 74%);
+  background-color: hsl(35, 46%, 14%);
+}
+
+.text-bg-Green {
+  color: hsl(132, 100%, 89%);
+  background-color: hsl(132, 100%, 29%);
+}
+
+.text-bg-Orange {
+  color: hsl(42, 100%, 15%);
+  background-color: hsl(42, 100%, 45%);
+}
+
+.text-bg-Yellow {
+  color: hsl(61, 100%, 19%);
+  background-color: hsl(61, 100%, 63%);
+}
+
+.text-bg-Purple {
+  color: hsl(267, 100%, 89%);
+  background-color: hsl(267, 100%, 29%);
+}
+
+.text-bg-Red {
+  color: hsl(0, 100%, 95%);
+  background-color: hsl(0, 100%, 39%);
+}
+
+.text-bg-Various {
+  color: hsl(0, 0%, 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(129, 58, 180, 1) 0%,
+    rgba(253, 29, 29, 1) 50%,
+    rgba(252, 176, 69, 1) 100%
+  );
+}
+
+.text-bg-White {
+  color: hsl(0, 0%, 55%);
+  background-color: hsl(0, 0%, 100%);
+}
+
+.text-bg-Pink {
+  color: hsl(305, 100%, 99%);
+  background-color: hsl(305, 100%, 50%);
 }

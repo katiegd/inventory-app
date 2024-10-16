@@ -12,31 +12,35 @@
     <div class="container">
       <div class="main-content">
         <h1>products</h1>
-        <% products.forEach((product) => { %>
-        <div class="card mb-3">
-          <div class="row g-0">
-            <div class="col-md-4">
+
+        <div class="sidebar-products">
+          <%- include("partials/sidebar") %>
+          <div class="products-container">
+            <% products.forEach((product) => { %>
+            <div class="product-card">
               <img
-                src="<%=product.img_src%>"
-                class="img-fluid rounded-start"
+                src="<%= product.src %>"
+                class="product-img"
                 alt="..."
+                width="80px"
               />
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title"><%= product.name %></h5>
-                <p class="card-text"><%= product.brand %></p>
-                <p class="card-text">Price: $<%= product.price %></p>
-                <p class="card-text">
-                  <span class="badge rounded-pill text-bg-primary"
-                    ><%= product.category %></span
-                  >
-                </p>
+
+              <div class="card-info">
+                <div class="name-price">
+                  <p class="card-name"><%= product.name %></p>
+                  <p class="card-price">$<%= product.price %></p>
+                </div>
+                <p class="card-brand">Brand: <%= product.brand %></p>
+                <p class="card-brand">Quantity: <%= product.quantity %></p>
+
+                <span class="badge rounded-pill text-bg-<%=product.category%>"
+                  ><%= product.category %></span
+                >
               </div>
             </div>
+            <% }) %>
           </div>
         </div>
-        <% }) %>
       </div>
     </div>
     <%- include('partials/footer') %>
