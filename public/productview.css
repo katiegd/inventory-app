@@ -27,6 +27,7 @@
 
 .view-product-img {
   width: 30vw;
+  max-width: 300px;
 }
 
 .name-category {
@@ -36,6 +37,7 @@
 }
 
 .product-category {
+  width: fit-content;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 2px;
   border-radius: 1rem;
   padding: 0.25rem 1rem;
