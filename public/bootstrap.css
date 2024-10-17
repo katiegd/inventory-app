@@ -389,11 +389,11 @@ sup {
 }
 
 a {
-  color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1));
-  text-decoration: underline;
+  color: var(--bs-body-color);
+  text-decoration: none;
 }
 a:hover {
-  --bs-link-color-rgb: var(--bs-link-hover-color-rgb);
+  text-decoration: none;
 }
 
 a:not([href]):not([class]),

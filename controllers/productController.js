@@ -3,10 +3,8 @@ const db = require("../db/queries");
 async function getAllProducts(req, res) {
   const sort = req.query.sort;
   const selectedCategory = req.query.category;
-  const selectedColors = req.query.color;
 
   const listedCategories = await db.getUniqueCategories();
-  const listedColors = await db.getUniqueColors();
 
   let products;
 
@@ -16,8 +14,6 @@ async function getAllProducts(req, res) {
     products = await db.sortByName({ sort });
   } else if (selectedCategory) {
     products = await db.filterByCategory({ selectedCategory });
-  } else if (selectedColors) {
-    products = await db.filterByColor({ selectedColors });
   } else {
     products = await db.showAllProducts();
   }
@@ -27,11 +23,17 @@ async function getAllProducts(req, res) {
     sort,
     selectedCategory,
     listedCategories,
-    selectedColors,
-    listedColors,
   });
+}
+
+async function showProduct(req, res) {
+  const id = req.params.id;
+  const products = await db.filterById(id);
+
+  res.render("viewProduct", { product: products });
 }
 
 module.exports = {
   getAllProducts,
+  showProduct,
 };

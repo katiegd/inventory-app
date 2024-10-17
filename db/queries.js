@@ -1,5 +1,13 @@
 const pool = require("./pool");
 
+async function filterById(id) {
+  const { rows } = await pool.query("SELECT * FROM inventory WHERE id = $1", [
+    id,
+  ]);
+  // If you don't do rows[0], it returns an array which will result in undefined.
+  return rows[0];
+}
+
 async function showAllProducts() {
   const { rows } = await pool.query("SELECT * FROM inventory;");
   return rows;
@@ -49,36 +57,11 @@ async function filterByCategory({ selectedCategory }) {
   return rows;
 }
 
-async function getUniqueColors() {
-  const { rows } = await pool.query(
-    "SELECT DISTINCT color FROM inventory ORDER BY color ASC"
-  );
-  const colors = rows.map((row) => row.color);
-  return colors;
-}
-
-async function filterByColor({ selectedColors }) {
-  if (!Array.isArray(selectedColors)) {
-    selectedColors = [selectedColors];
-  }
-
-  const placeholder = selectedColors
-    .map((_, index) => `$${index + 1}`)
-    .join(", ");
-
-  const query = `SELECT * FROM inventory WHERE color IN (${placeholder})
-  ORDER BY color ASC`;
-
-  const { rows } = await pool.query(query, selectedColors);
-  return rows;
-}
-
 module.exports = {
+  filterById,
   showAllProducts,
   sortByPrice,
   sortByName,
   filterByCategory,
-  getUniqueColors,
   getUniqueCategories,
-  filterByColor,
 };

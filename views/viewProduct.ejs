@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/productview.css" />
+    <script src="/bootstrap.js" defer></script>
+    <title><%= product.name %></title>
+  </head>
+  <body>
+    <%- include("partials/navbar") %>
+    <div class="container">
+      <div class="product-content">
+        <a href="/products" class="btn btn-custom btn-sm">
+          << Return to Products
+        </a>
+
+        <div class="view-product-container">
+          <div class="view-image">
+            <img
+              src="<%= product.src %>"
+              class="view-product-img"
+              alt="<%= product.name %>"
+            />
+          </div>
+          <div class="view-info">
+            <div class="name-category">
+              <h1><%= product.name %></h1>
+              <h3 class="product-category text-bg-<%=product.category%>">
+                <%= product.category %>
+              </h3>
+            </div>
+
+            $<%=product.price%> <%=product.brand%> <%=product.category%>
+            <%=product.quantity%>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%- include('partials/footer') %>
+  </body>
+</html>

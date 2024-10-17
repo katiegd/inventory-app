@@ -23,7 +23,7 @@
   display: flex;
   flex-direction: column;
   padding-top: 2rem;
-  min-height: calc(100vh - 126px);
+  min-height: calc(100vh - 117px);
 }
 
 .sidebar-products {
@@ -67,7 +67,7 @@
 }
 
 .product-card:hover {
-  transform: scale(1.05);
+  box-shadow: rgba(0, 0, 0, 0.96) 0px 0px 4px;
   cursor: pointer;
 }
 
@@ -181,59 +181,4 @@ form:hover {
 
 .form-title {
   font-weight: 600;
-}
-
-.text-bg-Blue {
-  color: hsl(240, 100%, 90%);
-  background-color: hsl(240, 100%, 50%);
-}
-
-.text-bg-Brown {
-  color: hsl(35, 46%, 74%);
-  background-color: hsl(35, 46%, 14%);
-}
-
-.text-bg-Green {
-  color: hsl(132, 100%, 89%);
-  background-color: hsl(132, 100%, 29%);
-}
-
-.text-bg-Orange {
-  color: hsl(42, 100%, 15%);
-  background-color: hsl(42, 100%, 45%);
-}
-
-.text-bg-Yellow {
-  color: hsl(61, 100%, 19%);
-  background-color: hsl(61, 100%, 63%);
-}
-
-.text-bg-Purple {
-  color: hsl(267, 100%, 89%);
-  background-color: hsl(267, 100%, 29%);
-}
-
-.text-bg-Red {
-  color: hsl(0, 100%, 95%);
-  background-color: hsl(0, 100%, 39%);
-}
-
-.text-bg-Various {
-  color: hsl(0, 0%, 100%);
-  background: linear-gradient(
-    90deg,
-    rgba(129, 58, 180, 1) 0%,
-    rgba(253, 29, 29, 1) 50%,
-    rgba(252, 176, 69, 1) 100%
-  );
-}
-
-.text-bg-White {
-  color: hsl(0, 0%, 55%);
-  background-color: hsl(0, 0%, 100%);
-}
-
-.text-bg-Pink {
-  color: hsl(305, 100%, 99%);
-  background-color: hsl(305, 100%, 50%);
 }

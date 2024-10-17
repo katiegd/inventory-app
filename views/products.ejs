@@ -17,27 +17,29 @@
           <%- include("partials/sidebar") %>
           <div class="products-container">
             <% products.forEach((product) => { %>
-            <div class="product-card">
-              <img
-                src="<%= product.src %>"
-                class="product-img"
-                alt="..."
-                width="80px"
-              />
+            <a href="/products/<%=product.id%>"
+              ><div class="product-card">
+                <img
+                  src="<%= product.src %>"
+                  class="product-img"
+                  alt="..."
+                  width="80px"
+                />
 
-              <div class="card-info">
-                <div class="name-price">
-                  <p class="card-name"><%= product.name %></p>
-                  <p class="card-price">$<%= product.price %></p>
+                <div class="card-info">
+                  <div class="name-price">
+                    <p class="card-name"><%= product.name %></p>
+                    <p class="card-price">$<%= product.price %></p>
+                  </div>
+                  <p class="card-brand">Brand: <%= product.brand %></p>
+                  <p class="card-brand">Quantity: <%= product.quantity %></p>
+
+                  <span class="badge rounded-pill text-bg-<%=product.category%>"
+                    ><%= product.category %></span
+                  >
                 </div>
-                <p class="card-brand">Brand: <%= product.brand %></p>
-                <p class="card-brand">Quantity: <%= product.quantity %></p>
-
-                <span class="badge rounded-pill text-bg-<%=product.category%>"
-                  ><%= product.category %></span
-                >
               </div>
-            </div>
+            </a>
             <% }) %>
           </div>
         </div>
