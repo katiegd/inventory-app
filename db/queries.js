@@ -9,7 +9,7 @@ async function filterById(id) {
 }
 
 async function showAllProducts() {
-  const { rows } = await pool.query("SELECT * FROM inventory");
+  const { rows } = await pool.query("SELECT * FROM inventory;");
   return rows;
 }
 

@@ -33,7 +33,12 @@ async function showProduct(req, res) {
   res.render("viewProduct", { product: products });
 }
 
+async function addProduct(req, res) {
+  res.render("newProduct");
+}
+
 module.exports = {
   getAllProducts,
   showProduct,
+  addProduct,
 };
