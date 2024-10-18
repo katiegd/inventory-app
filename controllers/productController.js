@@ -30,6 +30,7 @@ async function showProduct(req, res) {
   const id = req.params.id;
   const products = await db.filterById(id);
 
+  console.log(products);
   res.render("viewProduct", { product: products });
 }
 

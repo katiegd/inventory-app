@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const path = require("node:path");
 const assetsPath = path.join(__dirname, "public");
+require("dotenv").config();
 
 const indexRouter = require("./routes/index");
 const productsRouter = require("./routes/products");
