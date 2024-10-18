@@ -3,14 +3,28 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/categories.css" />
     <script src="/bootstrap.js" defer></script>
     <title><%= title %></title>
   </head>
   <body>
     <%- include("partials/navbar") %>
     <div class="container">
-      <div class="main-content"><h1>categories</h1></div>
+      <div class="main-content">
+        <div class="header-addbtn">
+          <h1>Categories</h1>
+          <a href="/addCategory" class="btn btn-custom btn-sm"
+            >Add a Category</a
+          >
+        </div>
+        <div class="categories-list">
+          <% listedCategories.forEach((category) => { %>
+          <div class="text-bg-<%=category%> category-card">
+            <h2><%= category %></h2>
+          </div>
+          <% }) %>
+        </div>
+      </div>
     </div>
     <%- include('partials/footer') %>
   </body>

@@ -19,11 +19,27 @@
   background-color: var(--custbg-light);
 }
 
+.btn-custom {
+  background-color: var(--custbg-light);
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 3px;
+}
+
+.btn-custom:hover {
+  background-color: hsl(136, 54%, 93%);
+  box-shadow: rgba(0, 0, 0, 0.36) 0px 1px 3px;
+}
+
 .main-content {
   display: flex;
   flex-direction: column;
   padding-top: 2rem;
   min-height: calc(100vh - 117px);
+}
+
+.header-addbtn {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
 }
 
 .sidebar-products {

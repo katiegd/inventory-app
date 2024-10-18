@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
-router.route("/").get((req, res) => {
-  res.render("categories", { title: "Frootie Categories" });
-});
+const categoryController = require("../controllers/categoryController");
+
+router.route("/").get(categoryController.getAllCategories);
 
 module.exports = router;
