@@ -57,6 +57,17 @@ async function filterByCategory({ selectedCategory }) {
   return rows;
 }
 
+async function addProductToDb(newProduct) {
+  await pool.query(`INSERT INTO inventory ( name,
+    quantity,
+    price,
+    brand,
+    description,
+    category,
+    src,
+    isDefault) VALUES ('${newProduct.name}','${newProduct.quantity}','${newProduct.price}','${newProduct.brand}','${newProduct.description}','${newProduct.category}','${newProduct.src}', '${newProduct.isDefault}');`);
+}
+
 module.exports = {
   filterById,
   showAllProducts,
@@ -64,4 +75,5 @@ module.exports = {
   sortByName,
   filterByCategory,
   getUniqueCategories,
+  addProductToDb,
 };
