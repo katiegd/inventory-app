@@ -31,12 +31,18 @@ async function sortByName({ sort = "nameASC" }) {
   return rows;
 }
 
-async function getUniqueCategories() {
+async function getCategories() {
   const { rows } = await pool.query(
-    "SELECT DISTINCT category FROM inventory ORDER BY category ASC"
+    "SELECT * FROM categories ORDER BY category ASC;"
   );
-  const categories = rows.map((row) => row.category);
-  return categories;
+  return rows;
+}
+
+async function addCategory(newCategory) {
+  const fontColor = await pool.query(
+    "INSERT INTO categories (category, color) VALUES ($1, $2);",
+    [newCategory.category, newCategory.color]
+  );
 }
 
 async function filterByCategory({ selectedCategory }) {
@@ -74,6 +80,7 @@ module.exports = {
   sortByPrice,
   sortByName,
   filterByCategory,
-  getUniqueCategories,
+  getCategories,
   addProductToDb,
+  addCategory,
 };

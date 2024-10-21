@@ -4,7 +4,7 @@ async function getAllProducts(req, res) {
   const sort = req.query.sort;
   const selectedCategory = req.query.category;
 
-  const listedCategories = await db.getUniqueCategories();
+  const listedCategories = await db.getCategories();
 
   let products;
 
@@ -34,7 +34,7 @@ async function showProduct(req, res) {
 }
 
 async function addProduct(req, res) {
-  const listedCategories = await db.getUniqueCategories();
+  const listedCategories = await db.getCategories();
 
   res.render("newProduct", { listedCategories });
 }

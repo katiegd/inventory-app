@@ -12,16 +12,21 @@
     <div class="container">
       <div class="main-content">
         <div class="header-addbtn">
-          <h1>Categories</h1>
-          <a href="/addCategory" class="btn btn-custom btn-sm"
+          <h1>categories</h1>
+          <a href="/categories/new" class="btn btn-custom btn-sm"
             >Add a Category</a
           >
         </div>
         <div class="categories-list">
           <% listedCategories.forEach((category) => { %>
-          <div class="text-bg-<%=category%> category-card">
-            <h2><%= category %></h2>
-          </div>
+          <a href="/products?category=<%=category.category%>">
+            <div
+              class="text-bg-<%=category.category%> category-card"
+              style="background-color: <%=category.color%>"
+            >
+              <h2><%= category.category %></h2>
+            </div></a
+          >
           <% }) %>
         </div>
       </div>

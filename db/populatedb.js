@@ -43,6 +43,10 @@ INSERT INTO inventory (name,quantity,price,category,color,brand,src,description,
 	 ('Salt',100,0.99,'Pantry','White','Basic Seasonings','/images/salt.svg','Classic table salt, essential for seasoning your meals.',true);
 `;
 
+const createCategoriesTable = `CREATE TABLE IF NOT EXISTS categories ( id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY, category VARCHAR(50) UNIQUE, color TEXT UNIQUE)`;
+
+const createCategories = `INSERT INTO categories (category, color) VALUES ('Bakery', '#ffc26c'), ('Beverages', '#634040'), ('Condiments', '#fff952'), ('Dairy', '#fffeeb'), ('Frozen', '#b0e3ee'), ('Fruit', '#ff0062'), ('Grains', '#ffe3bc'), ('Pantry', '#11ac7b'), ('Seafood', '#0037ff'), ('Snacks', '#56157f'), ('Vegetable', '#23a112');`;
+
 async function main() {
   console.log("Seeding...");
   const client = new Client({
@@ -52,8 +56,10 @@ async function main() {
     await client.connect();
     console.log("Connected to database.");
     await client.query(createSQLTable);
-    console.log("Table created.");
+    await client.query(createCategoriesTable);
+    console.log("Tables created.");
     await client.query(createSQLData);
+    await client.query(createCategories);
     console.log("Data created.");
   } catch (error) {
     console.error("Error occured:", error);

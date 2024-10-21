@@ -29,11 +29,15 @@
     <label for="filter" class="form-title">Filter By Category:</label><br />
 
     <% listedCategories.forEach((category) => { %> <input type="checkbox"
-    id="<%= category %>" name="category" value="<%= category %>" <%=
-    selectedCategory && selectedCategory.includes(category) ? 'checked' : ''
-    %>/>
-    <label for="<%= category %>" class="text-bg-<%=category %> category-label">
-      <%= category %></label
+    id="<%= category.category%>" name="category" value="<%= category.category
+    %>" <%= selectedCategory && selectedCategory.includes(category.category) ?
+    'checked' : '' %>/>
+    <label
+      for="<%= category.category %>"
+      class="category-label"
+      style="background-color: <%=category.color%>"
+    >
+      <%= category.category %></label
     ><br />
 
     <% }) %>
