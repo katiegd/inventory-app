@@ -37,6 +37,24 @@
             <p class="product-description"><%= product.description %></p>
             <H5>Quantity: <%=product.quantity%></H5>
           </div>
+          <div class="edit-delete-btns">
+            <form action="/products/edit/<%=product.id%>" method="get">
+              <button type="submit" class="btn btn-custom edit-product-btn">
+                Edit
+              </button>
+            </form>
+            <% if (!product.isdefault) { %>
+            <form action="/products/delete/<%=product.id%>" method="post">
+              <button type="submit" class="btn btn-custom delete-product-btn">
+                Delete
+              </button>
+
+              <% } else { %>
+              <button class="btn btn-custom" disabled>Delete</button>
+            </form>
+
+            <% } %>
+          </div>
         </div>
       </div>
     </div>

@@ -32,6 +32,7 @@
 .main-content {
   display: flex;
   flex-direction: column;
+  gap: 2rem;
   padding-top: 2rem;
   min-height: calc(100vh - 117px);
 }
@@ -44,7 +45,6 @@
 
 .sidebar-products {
   flex: 1;
-  margin: 2rem 0;
   display: grid;
   grid-template-columns: 1fr 5fr;
   gap: 1rem;
@@ -133,4 +133,8 @@ form:hover {
 
 .form-title {
   font-weight: 600;
+}
+
+.disclaimer {
+  font-size: 0.75rem;
 }

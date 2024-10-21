@@ -15,4 +15,11 @@ router
 //Put this route last otherwise it will mess up links
 router.route("/:id").get(productController.showProduct);
 
+router
+  .route("/edit/:id")
+  .get(productController.editProductGet)
+  .post(productController.editProductPost);
+
+router.route("/delete/:id").post(productController.deleteProduct);
+
 module.exports = router;

@@ -11,11 +11,12 @@ async function newCategoryGet(req, res) {
 }
 
 async function newCategoryPost(req, res) {
+  console.log(req);
+
   const input = {
     category: req.body.category,
     color: req.body.color,
   };
-  console.log(input);
   try {
     await db.addCategory(input);
     res.redirect("/categories");
@@ -24,8 +25,19 @@ async function newCategoryPost(req, res) {
   }
 }
 
+async function deleteCategoryPost(req, res) {
+  const category = req.params.category;
+  try {
+    await db.deleteCategory(category);
+    res.redirect("/categories");
+  } catch (err) {
+    res.status(500).send("Error deleting category.", err);
+  }
+}
+
 module.exports = {
   getAllCategories,
   newCategoryGet,
   newCategoryPost,
+  deleteCategoryPost,
 };

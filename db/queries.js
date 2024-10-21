@@ -39,7 +39,7 @@ async function getCategories() {
 }
 
 async function addCategory(newCategory) {
-  const fontColor = await pool.query(
+  await pool.query(
     "INSERT INTO categories (category, color) VALUES ($1, $2);",
     [newCategory.category, newCategory.color]
   );
@@ -74,6 +74,68 @@ async function addProductToDb(newProduct) {
     isDefault) VALUES ('${newProduct.name}','${newProduct.quantity}','${newProduct.price}','${newProduct.brand}','${newProduct.description}','${newProduct.category}','${newProduct.src}', '${newProduct.isDefault}');`);
 }
 
+async function deleteProduct(id) {
+  await pool.query("DELETE FROM inventory WHERE id = $1", [id]);
+}
+
+async function deleteCategory(category) {
+  await pool.query("DELETE FROM categories WHERE category = $1", [category]);
+}
+
+async function editProduct({
+  id,
+  name,
+  quantity,
+  price,
+  category,
+  brand,
+  src,
+  description,
+}) {
+  const updates = [];
+  const values = [];
+  let index = 1;
+
+  if (name) {
+    updates.push(`name = $${index++}`);
+    values.push(name);
+    console.log("There were name changes.");
+  }
+  if (quantity) {
+    updates.push(`quantity = $${index++}`);
+    values.push(quantity);
+    console.log("There were quantity changes.");
+  }
+  if (price) {
+    updates.push(`price = $${index++}`);
+    values.push(price);
+  }
+  if (category) {
+    updates.push(`category = $${index++}`);
+    values.push(category);
+  }
+  if (brand) {
+    updates.push(`brand = $${index++}`);
+    values.push(brand);
+  }
+  if (src) {
+    updates.push(`src = $${index++}`);
+    values.push(src);
+  }
+  if (description) {
+    updates.push(`description = $${index++}`);
+    values.push(description);
+  }
+
+  if (updates.length > 0) {
+    const query = `UPDATE inventory SET ${updates.join(
+      ", "
+    )} WHERE id = $${index}`;
+    values.push(id);
+    await pool.query(query, values);
+  }
+}
+
 module.exports = {
   filterById,
   showAllProducts,
@@ -83,4 +145,7 @@ module.exports = {
   getCategories,
   addProductToDb,
   addCategory,
+  deleteProduct,
+  deleteCategory,
+  editProduct,
 };

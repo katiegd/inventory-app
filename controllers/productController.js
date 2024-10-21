@@ -60,9 +60,55 @@ async function addProductToDb(req, res) {
   }
 }
 
+async function deleteProduct(req, res) {
+  const id = req.params.id;
+
+  await db.deleteProduct(id);
+
+  res.redirect("/products");
+}
+
+async function editProductGet(req, res) {
+  const id = req.params.id;
+  const products = await db.filterById(id);
+  const listedCategories = await db.getCategories();
+  const selectedCategory = products.category;
+
+  res.render("editProduct", {
+    product: products,
+    listedCategories,
+    selectedCategory,
+  });
+}
+
+async function editProductPost(req, res) {
+  const id = req.params.id;
+  console.log(req);
+
+  const { name, quantity, price, category, brand, src, description } = req.body;
+  console.log(req.body);
+
+  console.log(id);
+  await db.editProduct({
+    id,
+    name,
+    quantity,
+    price,
+    category,
+    brand,
+    src,
+    description,
+  });
+
+  res.redirect(`/products/${id}`);
+}
+
 module.exports = {
   getAllProducts,
   showProduct,
   addProduct,
   addProductToDb,
+  deleteProduct,
+  editProductGet,
+  editProductPost,
 };

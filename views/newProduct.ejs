@@ -26,7 +26,7 @@
             <label for="price">Price:</label>
             <input type="number" name="price" min="0.01" step="any" required />
             <label for="quantity">Quantity:</label>
-            <input type="number" name="quantity" min="1" max="100" required />
+            <input type="number" name="quantity" min="1" max="999" required />
             <label for="brand">Brand:</label>
             <input type="text" name="brand" required />
             <label for="description">Description:</label>
@@ -34,7 +34,9 @@
             <label for="category">Category:</label>
             <select name="category" id="category">
               <% listedCategories.forEach((category) => { %>
-              <option value="<%=category%>"><%=category%></option>
+              <option value="<%=category.category%>">
+                <%=category.category%>
+              </option>
               <% }) %>
             </select>
             <label for="image">Image:</label>

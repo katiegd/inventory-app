@@ -25,8 +25,20 @@
               style="background-color: <%=category.color%>"
             >
               <h2><%= category.category %></h2>
-            </div></a
-          >
+              <form
+                action="categories/delete/<%=category.category%>"
+                method="post"
+                class="delete-category-form"
+              >
+                <button type="submit" class="btn btn-sm delete-category-btn">
+                  <img
+                    src="/images/trash.svg"
+                    alt="Delete"
+                    class="delete-img"
+                  />
+                </button>
+              </form></div
+          ></a>
           <% }) %>
         </div>
       </div>

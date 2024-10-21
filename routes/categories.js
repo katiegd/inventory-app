@@ -9,4 +9,6 @@ router
   .get(categoryController.newCategoryGet)
   .post(categoryController.newCategoryPost);
 
+router.route("/delete/:category").post(categoryController.deleteCategoryPost);
+
 module.exports = router;
