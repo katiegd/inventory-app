@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/editproduct.css" />
+    <link rel="stylesheet" href="/css/editproduct.css" />
     <script src="/bootstrap.js" defer></script>
     <title>Edit <%= product.name%></title>
     <link rel="icon" type="image/x-icon" href="<%= product.src%>" />
@@ -64,15 +64,17 @@
                   required
               /></H3>
             </div>
-            <h5 class="product-category text-bg-<%=product.category%>">
-                <select name="category" id="category">
-                    <% listedCategories.forEach((category) => { %>
-                      <option value="<%= category.category %>" 
-                        <%= category.category === selectedCategory ? 'selected' : '' %>>
-                        <%= category.category %>
-                      </option>
-                    <% }) %>
-                  </select>
+            <h5 class="product-category" style="color: <%=product.fontColor%>; background-color: <%=product.color%>;">
+
+            <select name="category" id="category">
+              <% listedCategories.forEach((category) => { %>
+                <option value="<%= category.category %>" 
+                  <%= category.category === selectedCategory ? 'selected' : '' %>>
+                  <%= category.category %>
+                </option>
+              <% }) %>
+            </select>
+                
             </h5>
             <h5>
                 <label for="brand">Brand:</label>

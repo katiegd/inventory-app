@@ -1,9 +1,16 @@
 db = require("../db/queries");
 
 async function getAllCategories(req, res) {
-  const listedCategories = await db.getCategories();
+  const getCategories = await db.getCategories();
 
-  res.render("categories", { title: "Frootie Categories", listedCategories });
+  const listedCategories = getCategories.filter(
+    (cat) => cat.category !== "Uncategorized"
+  );
+
+  res.render("categories", {
+    title: "Frootie Categories",
+    listedCategories,
+  });
 }
 
 async function newCategoryGet(req, res) {
@@ -11,8 +18,6 @@ async function newCategoryGet(req, res) {
 }
 
 async function newCategoryPost(req, res) {
-  console.log(req);
-
   const input = {
     category: req.body.category,
     color: req.body.color,

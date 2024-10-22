@@ -3,8 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/css/styles.css" />
     <script src="/bootstrap.js" defer></script>
+    <link rel="icon" type="image/x-icon" href="/frootie-logo.svg" />
     <title><%= title %></title>
   </head>
   <body>
@@ -39,8 +40,11 @@
                   <p class="card-brand">Quantity: <%= product.quantity %></p>
 
                   <span
-                    class="badge rounded-pill text-bg-<%=product.category%>"
-                    style="background-color: pink"
+                    class="badge rounded-pill"
+                    style="
+                      color: <%=product.fontColor%>;
+                      background-color: <%= product.color %>;
+                    "
                     ><%= product.category %></span
                   >
                 </div>

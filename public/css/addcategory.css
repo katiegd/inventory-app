@@ -1,10 +1,11 @@
-@import "./styles.css";
+@import "../css/styles.css";
 
-.product-form-container {
+.category-form-container {
   display: flex;
 }
 
-.product-form {
+.category-form {
+  margin-top: 2rem;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -14,17 +15,17 @@
   border-radius: 1rem;
 }
 
-.product-form > label:not(:first-child) {
+.category-form > label:not(:first-child) {
   padding-top: 1rem;
 }
 
-.product-form input {
+.category-form input {
   background-color: white;
   padding: 0.25rem 0.5rem;
   border-radius: 0.5rem;
   border: 1px solid rgba(0, 0, 0, 0.26);
 }
 
-.add-product-submit {
+.add-category-submit {
   margin-top: 1rem;
 }

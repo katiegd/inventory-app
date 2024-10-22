@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/productview.css" />
+    <link rel="stylesheet" href="/css/productview.css" />
     <script src="/bootstrap.js" defer></script>
     <title><%= product.name %></title>
     <link rel="icon" type="image/x-icon" href="<%= product.src%>" />
@@ -29,7 +29,13 @@
               <h1><%= product.name %></h1>
               <H3>$<%=product.price%></H3>
             </div>
-            <h5 class="product-category text-bg-<%=product.category%>">
+            <h5
+              class="product-category"
+              style="
+                color: <%=product.fontColor%>;
+                background-color: <%=product.color%>;
+              "
+            >
               <%= product.category %>
             </h5>
             <h5>Brand: <%=product.brand%></h5>

@@ -83,12 +83,14 @@ async function editProductGet(req, res) {
 
 async function editProductPost(req, res) {
   const id = req.params.id;
-  console.log(req);
+  let src;
 
-  const { name, quantity, price, category, brand, src, description } = req.body;
-  console.log(req.body);
+  const { name, quantity, price, category, brand, description } = req.body;
 
-  console.log(id);
+  if (req.file) {
+    src = `/uploads/${req.file.filename}`;
+  }
+
   await db.editProduct({
     id,
     name,
@@ -103,6 +105,13 @@ async function editProductPost(req, res) {
   res.redirect(`/products/${id}`);
 }
 
+async function searchPost(req, res) {
+  const query = req.body.search;
+  const results = await db.search(query);
+
+  res.render("search", { title: "Search", query, products: results });
+}
+
 module.exports = {
   getAllProducts,
   showProduct,
@@ -111,4 +120,5 @@ module.exports = {
   deleteProduct,
   editProductGet,
   editProductPost,
+  searchPost,
 };

@@ -7,6 +7,8 @@ const { upload } = require("../controllers/uploadMiddleware");
 
 router.route("/").get(productController.getAllProducts);
 
+router.route("/search").post(productController.searchPost);
+
 router
   .route("/new")
   .get(productController.addProduct)
@@ -18,7 +20,7 @@ router.route("/:id").get(productController.showProduct);
 router
   .route("/edit/:id")
   .get(productController.editProductGet)
-  .post(productController.editProductPost);
+  .post(upload.single("src"), productController.editProductPost);
 
 router.route("/delete/:id").post(productController.deleteProduct);
 
