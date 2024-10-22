@@ -1,4 +1,5 @@
 const { Client } = require("pg");
+require("dotenv").config();
 
 const createSQLTable = `CREATE TABLE IF NOT EXISTS inventory ( id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY, name VARCHAR(50) UNIQUE, category_id INTEGER, quantity INTEGER, price DECIMAL(5, 2), brand VARCHAR(50), src TEXT DEFAULT '/images/fork-knife-default.svg', description VARCHAR(200), isDefault BOOLEAN);`;
 
