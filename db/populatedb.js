@@ -50,7 +50,7 @@ const createCategories = `INSERT INTO categories (category, color) VALUES ('Unca
 async function main() {
   console.log("Seeding...");
   const client = new Client({
-    connectionString: process.env.DATABASE_URL || process.env.RENDER_URL,
+    connectionString: process.env.RENDER_URL,
   });
   try {
     await client.connect();
