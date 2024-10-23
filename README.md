@@ -4,6 +4,6 @@
 
 CRUD inventory application from the Odin Project. 
 
-Used Node.js, PostgreSQL, EJS, and Bootstrap for this project. 
+Used Node.js, Express, PostgreSQL, and Bootstrap for this project. 
 
-SVG images from SVG Repo.
+SVG images from SVG Repo. 
