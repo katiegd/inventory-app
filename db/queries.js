@@ -169,7 +169,10 @@ async function addProductToDb(newProduct) {
 }
 
 async function deleteProduct(id) {
-  await pool.query("DELETE FROM inventory WHERE id = $1", [id]);
+  await pool.query(
+    "DELETE FROM inventory WHERE id = $1 AND isDefault = false",
+    [id]
+  );
 }
 
 async function deleteCategory(category) {
