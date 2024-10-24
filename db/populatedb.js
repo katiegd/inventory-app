@@ -1,6 +1,8 @@
 const { Client } = require("pg");
 require("dotenv").config();
 
+const dropTables = `DROP TABLE IF EXISTS inventory, categories;`;
+
 const createSQLTable = `CREATE TABLE IF NOT EXISTS inventory ( id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY, name VARCHAR(50) UNIQUE, category_id INTEGER, quantity INTEGER, price DECIMAL(5, 2), brand VARCHAR(50), src TEXT DEFAULT '/images/fork-knife-default.svg', description VARCHAR(200), isDefault BOOLEAN);`;
 
 const createSQLData = `
@@ -59,6 +61,7 @@ async function main() {
   try {
     await client.connect();
     console.log("Connected to database.");
+    await client.query(dropTables);
     await client.query(createCategoriesTable);
     await client.query(createSQLTable);
     console.log("Tables created.");
