@@ -44,7 +44,7 @@ async function filterById(id) {
     return newRows[0];
 }
 
-const fitlerProducts = async (query) => {
+const fitlerProducts = (query) => {
     let sortSQLQuery = "";
     if (query.sort) {
         const [column, direction] = query.sort
@@ -74,96 +74,38 @@ const fitlerProducts = async (query) => {
         }
     }
 
-    const { rows } = await pool.query(
-        `SELECT inventory.*, categories.category, categories.color FROM inventory JOIN categories ON category_id = categories.id ${categorySQLQuery} ${sortSQLQuery};`
-    );
-
-    return rows;
+    return `SELECT inventory.*, categories.category, categories.color FROM inventory JOIN categories ON category_id = categories.id ${categorySQLQuery} ${sortSQLQuery};`;
 };
 
 const getAllProducts = async (query = null) => {
     try {
+        let mainQuery =
+            "SELECT inventory.*, categories.category, categories.color FROM inventory JOIN categories ON category_id = categories.id;";
+
         if (query) {
-            return fitlerProducts(query);
+            mainQuery = fitlerProducts(query);
         }
 
-        const { rows } = await pool.query(
-            "SELECT inventory.*, categories.category, categories.color FROM inventory JOIN categories ON category_id = categories.id;"
-        );
+        const { rows } = await pool.query(mainQuery);
 
-        return rows;
+        const newRows = rows.map((row) => {
+            const brightness = brightnessByColor(row.color);
+            let fontColor;
+
+            if (brightness > 130) {
+                fontColor = "#212529e0";
+            } else {
+                fontColor = "#fefefee0";
+            }
+
+            return { ...row, fontColor };
+        });
+
+        return newRows;
     } catch (err) {
         console.error(err);
     }
 };
-
-// async function showAllProducts() {
-//   const { rows } = await pool.query(
-//     "SELECT inventory.*, categories.category, categories.color FROM inventory JOIN categories ON inventory.category_id = categories.id ORDER BY inventory.name ASC"
-//   );
-
-//   const newRows = rows.map((row) => {
-//     const brightness = brightnessByColor(row.color);
-//     let fontColor;
-
-//     if (brightness > 130) {
-//       fontColor = "#212529e0";
-//     } else {
-//       fontColor = "#fefefee0";
-//     }
-
-//     return { ...row, fontColor };
-//   });
-//   return newRows;
-// }
-
-// async function sortByPrice({ sort = "priceASC" }) {
-//   const order = sort.toUpperCase() === "PRICEDESC" ? "DESC" : "ASC";
-
-//   const { rows } = await pool.query(
-//     `SELECT inventory.*, categories.category, categories.color FROM inventory JOIN categories ON inventory.category_id = categories.id ORDER BY price ${order}`
-//   );
-//   return rows;
-// }
-
-// async function sortByName({ sort = "nameASC" }) {
-//   const order = sort.toUpperCase() === "NAMEDESC" ? "DESC" : "ASC";
-
-//   const { rows } = await pool.query(
-//     `SELECT inventory.*, categories.category, categories.color FROM inventory JOIN categories ON inventory.category_id = categories.id ORDER BY name ${order}`
-//   );
-//   return rows;
-// }
-
-// async function filterByCategory({ selectedCategory }) {
-//   // Make sure selectedCategory is an array to use with .map()
-//   if (!Array.isArray(selectedCategory)) {
-//     selectedCategory = [selectedCategory];
-//   }
-
-//   // Make placeholder for each selection "COLOR, "
-//   const placeholder = selectedCategory
-//     .map((_, index) => `$${index + 1}`)
-//     .join(", ");
-//   const query = `SELECT inventory.*, categories.category, categories.color FROM inventory JOIN categories ON inventory.category_id = categories.id WHERE categories.category IN (${placeholder})
-//   ORDER BY category ASC`;
-
-//   // Pass the query as well as the category for the placeholder function to work
-//   const { rows } = await pool.query(query, selectedCategory);
-//   const newRows = rows.map((row) => {
-//     const brightness = brightnessByColor(row.color);
-//     let fontColor;
-
-//     if (brightness > 130) {
-//       fontColor = "#212529e0";
-//     } else {
-//       fontColor = "#fefefee0";
-//     }
-
-//     return { ...row, fontColor };
-//   });
-//   return newRows;
-// }
 
 async function getCategories() {
     const { rows } = await pool.query(
